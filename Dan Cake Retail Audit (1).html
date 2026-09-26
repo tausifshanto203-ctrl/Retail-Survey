@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dan Cake Retail Audit</title>
+<link rel="icon" href="data:,">
+<style>
+:root{--bg:#f6f4f1;--card:#fff;--tx:#1d1b1a;--mut:#6b6560;--bd:#e0dbd5;--ac:#c8102e;--ac2:#fde8eb;--ok:#1a7f4b;--wn:#fff4d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141211;--card:#211e1c;--tx:#f1ece8;--mut:#a39b94;--bd:#39342f;--ac:#ff4d63;--ac2:#3a1b21;--ok:#4cc38a;--wn:#3b3212}}
+:root[data-theme="dark"]{--bg:#141211;--card:#211e1c;--tx:#f1ece8;--mut:#a39b94;--bd:#39342f;--ac:#ff4d63;--ac2:#3a1b21;--ok:#4cc38a;--wn:#3b3212}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#hd{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--bd);z-index:5}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:8px;flex-wrap:wrap}
+.bar nav{display:flex;gap:6px}.bar nav button{border:1px solid var(--bd);background:none;color:var(--tx);border-radius:20px;padding:6px 14px;font:600 14px inherit;font-family:inherit}
+.bar nav .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.prog{display:flex;gap:4px;padding:0 14px}.prog i{flex:1;height:5px;border-radius:3px;background:var(--bd)}.prog i.on{background:var(--ac)}
+.st{padding:6px 14px 8px;font-size:13px;color:var(--mut)}
+.wrap{max-width:820px;margin:auto;padding:14px 14px 130px}
+h2{font-size:19px;margin:18px 0 10px}h3{margin:0 0 10px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+.card.ok{text-align:center;border-color:var(--ok)}.card.warn{background:var(--wn)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font-family:inherit;cursor:pointer}
+.chip{min-height:68px;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;font:600 17px inherit;font-family:inherit;padding:8px}
+.chip.on{border-color:var(--ac);background:var(--ac2)}
+small{display:block;color:var(--mut);font-weight:400;font-size:12px}
+.btn{min-height:52px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:600 16px inherit;font-family:inherit;padding:0 16px}
+.btn.p{background:var(--ac);color:#fff;border-color:var(--ac)}.btn.w{width:100%;margin-top:10px}.btn:disabled{opacity:.5}
+label{display:block;font-weight:600;margin:12px 0}
+input,textarea,select{width:100%;min-height:48px;border:1.5px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx);font:16px inherit;font-family:inherit;padding:10px 12px;margin-top:6px}
+input[type=checkbox]{width:26px;height:26px;min-height:0;margin:0;accent-color:var(--ac)}
+.ctx{color:var(--ac);font-weight:700}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin:10px 0;overflow:hidden}
+summary{padding:14px;font-weight:700;cursor:pointer}.gc{color:var(--ok);margin-left:8px}
+.sku{border-top:1px solid var(--bd);display:flex;flex-wrap:wrap}.sk{display:flex;align-items:center;gap:12px;flex:1 1 100%;margin:0;padding:12px 14px;min-height:60px;font-weight:500}.qt{display:none;width:100%;align-items:center;gap:8px;padding:0 14px 12px;font-size:14px;font-weight:600}.sku.on .qt{display:flex}.qb{width:48px;height:44px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:700 22px inherit;font-family:inherit}.qi{width:84px;text-align:center;margin:0;min-height:44px}
+.sku.on{background:var(--ac2)}.sku span{flex:1}.sku em{font-style:normal;font-size:12px;color:var(--mut);text-align:right}
+#nav:not(:empty){position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;flex-wrap:wrap;z-index:6}
+#nav .btn{flex:1}#nav .p{flex:2}.tot{width:100%;text-align:center;font-weight:700;color:var(--ac)}
+.id{font:700 26px ui-monospace,monospace;color:var(--ok);margin:8px 0}.mut{color:var(--mut)}
+.ed{float:right;border:0;background:none;color:var(--ac);font-weight:700;padding:0}ul{margin:8px 0 0;padding-left:18px}
+.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:8px}.fl input,.fl select,.fl .btn{margin:0}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.kp div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px}.kp b{font-size:26px;display:block}
+.r{position:relative;display:grid;grid-template-columns:1fr auto 52px;gap:8px;padding:7px 4px;font-size:14px;border-bottom:1px solid var(--bd)}.r i{position:absolute;left:0;bottom:0;height:3px;background:var(--ac)}
+.r span:first-child{overflow-wrap:anywhere}.r b{text-align:right}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;border-bottom:1px solid var(--bd);text-align:right}td:first-child,th:first-child{text-align:left}
+.ar{display:grid;grid-template-columns:1fr 90px 80px 110px;gap:6px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)}.ar input{margin:0;min-height:40px;padding:6px}.ar .btn{min-height:40px;font-size:13px;padding:0 6px}.ar.off{opacity:.5}
+@media(max-width:560px){.ar{grid-template-columns:1fr 1fr}.ar>div{grid-column:1/-1}}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(100px + env(safe-area-inset-bottom,0px));background:#222;color:#fff;padding:10px 16px;border-radius:20px;z-index:9;display:none;max-width:90%}
+</style></head><body>
+<header id="hd"></header><main class="wrap" id="main"></main><div id="nav"></div><div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const SKU0=[["Dan Foods Ltd. (Dan Cake)","Plain Cake","Vanilla","140 gm",80],["Dan Foods Ltd. (Dan Cake)","Plain Cake","Chocolate","140 gm",80],["Dan Foods Ltd. (Dan Cake)","Butter Plain Cake","Butter","170 gm",100],["Dan Foods Ltd. (Dan Cake)","Orange Plain Cake","Orange","170 gm",100],["Dan Foods Ltd. (Dan Cake)","Chocolate Velvet Plain Cake","Chocolate","300 gm",250],["Dan Foods Ltd. (Dan Cake)","Plain Cake (Single Slice)","Vanilla","18 gm",10],["Dan Foods Ltd. (Dan Cake)","Plain Cake (Single Slice)","Chocolate","18 gm",10],["Dan Foods Ltd. (Dan Cake)","Plain Cake (Single Slice)","Orange","18 gm",10],["Dan Foods Ltd. (Dan Cake)","Plain Cake (Double Slice)","Vanilla","38 gm",20],["Dan Foods Ltd. (Dan Cake)","Plain Cake (Double Slice)","Chocolate","38 gm",20],["Dan Foods Ltd. (Dan Cake)","Marble Cake","Marble","300 gm",200],["Dan Foods Ltd. (Dan Cake)","Muffin","Vanilla","30 gm",25],["Dan Foods Ltd. (Dan Cake)","Muffin","Chocolate","30 gm",25],["Dan Foods Ltd. (Dan Cake)","Muffin","Vanilla","50 gm",35],["Dan Foods Ltd. (Dan Cake)","Muffin","Chocolate","50 gm",35],["Dan Foods Ltd. (Dan Cake)","Muffin Giftbox (12 pcs)","Vanilla","360 gm (12 x 30 gm)",300],["Dan Foods Ltd. (Dan Cake)","Muffin Giftbox (12 pcs)","Chocolate","360 gm (12 x 30 gm)",300],["Dan Foods Ltd. (Dan Cake)","Muffin Gift Pack (12 pcs)","Cappuccino","12 x 40 gm",360],["Dan Foods Ltd. (Dan Cake)","Chocochips Muffin (6 pcs)","Chocolate Chips","198 gm (6 pcs)",210],["Dan Foods Ltd. (Dan Cake)","Raisin Muffin (6 pcs)","Raisin","198 gm (6 x 33 gm)",210],["Dan Foods Ltd. (Dan Cake)","Swiss Roll","Strawberry","140 gm",140],["Dan Foods Ltd. (Dan Cake)","Swiss Roll","Strawberry","200 gm",190],["Dan Foods Ltd. (Dan Cake)","Swiss Roll","Chocolate","140 gm",140],["Dan Foods Ltd. (Dan Cake)","Swiss Roll","Chocolate","200 gm",190],["Dan Foods Ltd. (Dan Cake)","Layer Cake (12 pcs)","Chocolate (Vanilla Cream)","324 gm (12 pcs)",360],["Dan Foods Ltd. (Dan Cake)","Layer Cake (12 pcs)","Vanilla","324 gm (12 pcs)",360],["Dan Foods Ltd. (Dan Cake)","Pound Cake","Vanilla","220 gm",130],["Dan Foods Ltd. (Dan Cake)","Pound Cake","Chocolate","220 gm",130],["Dan Foods Ltd. (Dan Cake)","Fruit Cake","Fruit","220 gm",140],["Dan Foods Ltd. (Dan Cake)","Fruit Sliced Cake","Fruit","300 gm",180],["Dan Foods Ltd. (Dan Cake)","Dry Cake","Plain","300 gm",200],["Dan Foods Ltd. (Dan Cake)","Special Dry Cake","Plain","300 gm",200],["Dan Foods Ltd. (Dan Cake)","Chocolate Dry Cake","Chocolate","300 gm",200],["Dan Foods Ltd. (Dan Cake)","Marble Dry Cake","Marble","280 gm",200],["Dan Foods Ltd. (Dan Cake)","Classic Brownies","Chocolate","180 gm",150],["Dan Foods Ltd. (Dan Cake)","Danish Butter Cookies","Butter","150 gm",170],["Dan Foods Ltd. (Dan Cake)","Oats Cookies","Oats","150 gm",170],["Dan Foods Ltd. (Dan Cake)","Salted Cookies","Salted","150 gm",180],["Dan Foods Ltd. (Dan Cake)","Premium Lachcha Semai","Lachcha Semai","250 gm",280],["PRAN Foods Ltd. / PRAN Confectionery","All Time Twin Cake","Vanilla/ Chocolate","30 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","All time Cream Field Cup cake","","18 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","All Time Family Cake","Orange Flavored","68 gm",30],["PRAN Foods Ltd. / PRAN Confectionery","All time Sandwich Sponge Cake","","17 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","All Time Family Cake","Ghee Flavored","80 gm",40],["PRAN Foods Ltd. / PRAN Confectionery","sandwich Sponge Cake","Vanilla/ Chocolate","9 gm",5],["PRAN Foods Ltd. / PRAN Confectionery","All Time Family Cake","Mixed Fruit","30 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","All time Slice Cake","Vanilla/ Fruit","30 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","All Time Pie Cake","Chocolate","28 gm",15],["PRAN Foods Ltd. / PRAN Confectionery","All time Cake","Plain","65 gm",35],["PRAN Foods Ltd. / PRAN Confectionery","All Time","Ghee plain cake","67 gm",30],["PRAN Foods Ltd. / PRAN Confectionery","Tiffin Cake","Chocolate / Vanilla / Strawberry","25 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Butter Cake","Butter","70 gm",25],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Muffin Cake","Chocolate Flavored","16 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Layer Cake","Chocolate Cream","12 gm",10],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Creamy Donut Cake","Chocolate Cream","27 gm",15],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Fruit Cake","Fruit Cake","70 gm",30],["PRAN Foods Ltd. / PRAN Confectionery","Wonder Fruit Cake","Fruit Cake","65 gm",30],["PRAN Foods Ltd. / PRAN Confectionery","Mixed Fruit Cake","Mixed Fruit","230 gm",130],["PRAN Foods Ltd. / PRAN Confectionery","Mixed Fruit Family Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Cup Cake","Vanilla Flavour","",null],["PRAN Foods Ltd. / PRAN Confectionery","Cup Cake","Strawberry Flavour","",null],["PRAN Foods Ltd. / PRAN Confectionery","Chocolate Flavour Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Pran Dry Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Pran Special Dry Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Bisk Club Dry Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Bisk Club Dry Cake","","",null],["PRAN Foods Ltd. / PRAN Confectionery","Papa Cup Cake","","",null],["Olympic Industries Limited","Olympic Dry Cake","Dry Cake","290 gm",150],["Olympic Industries Limited","Delight Cake","","18 gm",10],["Olympic Industries Limited","Olympic Dry Cake","Marble","270 gm",150],["Olympic Industries Limited","Olympic Finger Dry Cake","","",null],["Olympic Industries Limited","Olympic Soft Cake","Chocolate","40 gm",null],["Olympic Industries Limited","Olympic Soft Cake","Ghee","",null],["Olympic Industries Limited","Olympic Soft Cake","Plain","40 gm",20],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Plain Cupcake","Vanilla","10 gm",null],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Ghi Cup cake","","18 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Plain Cupcake","Chocolate","10 gm",null],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Cream Cake Cup cake","","18 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Plain Cupcake","Milky Butter","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Mixed Fruit Cake Cup Cake","","18 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Mixed Fruit Cake","Mixed Fruit","210 gm",120],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Cream Filled Cupcake","Vanilla","18 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Dry Cake","","290 gm",150],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Cream Filled Cupcake","Chocolate","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Vanilla Pound Cake","","67 gm",30],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Pound Cake","Vanilla","63 gm",30],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Mixed Fruit Pound Cake","","70 gm",30],["Akij Bakers Ltd. (Funtastic / Yum)","Funtastic Pound Cake","Chocolate","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Vanilla Creamfilled Cup cake","","18 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Muffin Cake","Chocolate","17 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Chocolate Muffin Cake","","17 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Cream Filled Muffin Cake","Vanilla","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Fast Dry Cake","","24 gm",10],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Cream Filled Muffin Cake","Chocolate","17 gm",null],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Pound Cake","Vanilla","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Pound Cake","Chocolate","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Layer Cake","Vanilla","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Layer Cake","Chocolate","",null],["Akij Bakers Ltd. (Funtastic / Yum)","Yum Mini Swiss Roll","Assorted","30 gm",20],["Newzeland Dairy","BelleAme Dry Cake","","290 gm",150],["Kazi Farms","Vanilla Muffins","","16 gm",10],["Kazi Farms","Chocolate Muffin","","16 gm",10],["Kazi Farms","Chocolate slice cake","","70 gm",35],["Kazi Farms","Vanilla Slice Cake","","70 gm",30],["Kazi Farms","Slice Fruit Cake","","65 gm",30],["Kazi Farms","Slice butter cake","","65 gm",30],["Kazi Farms","Slice Plain Cake","","200 gm",120],["Kazi Farms","Slice Fruit Cake","","200 gm",130],["Kisswan","Chocolate Muffin Cake","","18 gm",10],["Cocola","Doll Cake - Milk Vanilla","","25 gm",10],["City Group","Quick Bite","Vanilla Pound Cake","67 gm",30],["City Group","Quick Bite","Chocolate pound cake","67 gm",35],["City Group","Quick Bite","Chocolate Muffin","16 gm",10],["City Group","Quick Bite","Choco Bite","16 gm",10],["City Group","Quick Bite","Layer Cake","17 gm",10],["City Group","Quick Bite","Cup Cake","400 gm",200],["Reedisha","Cup Cake","Chocolate","20 gm",10],["Bakery & Confectionery Product","Pie Home","Plain Cake","350 gm",140],["Bakery & Confectionery Product","Pie Home","Fruit Cake","350 gm",140],["Meghna Group of Industries (Fresh)","Fresh Chocolate Cake","Chocolate","70 gm",35],["Meghna Group of Industries (Fresh)","Fresh Family Plain Cake","Plain","70 gm",30],["Rani Food Industries Ltd. (GoldMark)","GoldMark Tasty Plain Cake","Plain","40 gm",20],["Rani Food Industries Ltd. (GoldMark)","GoldMark Brownies","Chocolate","50 gm",50]];
+const AREAS={DN:['Dhaka North',['Uttara','Badda']],DS:['Dhaka South',['Dhanmondi','Kolabagan']],DW:['Dhaka West',['Khilgaon','Motijheel']],DC:['Dhaka Central',['Mirpur','Kallyanpur']]};
+const SUBS=Object.entries(AREAS).flatMap(([k,v])=>v[1].map(s=>[k,s]));
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS={g(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},s(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const brandOf=(m,n)=>/^dan/i.test(m)?'Dan Cake':/pran/i.test(m)?'PRAN':/akij/i.test(m)?(/^yum/i.test(n)?'Yum':'Funtastic'):/kazi/i.test(m)?'Kazi Farms':/olympic/i.test(m)?'Olympic':/city/i.test(m)?'City Group':m;
+const catOf=n=>{n=n.toLowerCase();const c=[['muffin','Muffin'],['swiss','Swiss Roll'],['layer','Layer Cake'],['cup','Cupcake'],['pound','Pound Cake'],['dry','Dry Cake'],['cookie','Cookies'],['brownie','Brownie'],['fruit','Fruit Cake'],['marble','Marble Cake'],['plain|slice|twin|family|tiffin|butter|soft|velvet','Plain / Slice Cake']].find(([k])=>new RegExp(k).test(n));return c?c[1]:'Other'};
+let M=LS.g('dc_master',null)||SKU0.map((r,i)=>({id:'S'+String(i+1).padStart(3,'0'),mfr:r[0],brand:brandOf(r[0],r[1]),name:r[1],flav:r[2],wt:r[3],mrp:r[4],cat:catOf(r[1])}));
+const act=()=>M.filter(x=>!x.off),D=x=>x.brand==='Dan Cake';
+const snap=x=>({id:x.id,mfr:x.mfr,brand:x.brand,name:x.name,flav:x.flav,wt:x.wt,mrp:x.mrp,cat:x.cat});
+const price=m=>m==null||m===''?'MRP n/a':m+' Tk',AN=k=>`${AREAS[k][0]} (${k})`;
+const dr=LS.g('dc_draft',{});
+let S={tab:'survey',step:dr.step||0,area:dr.area||'',sub:dr.sub||'',shop:dr.shop||'',addr:dr.addr||'',sel:new Map((dr.sel||[]).map(x=>Array.isArray(x)?x:[x,1])),muf:dr.muf||'',q:'',done:null,busy:false,dup:false,pend:null,aq:''};
+const saveDraft=()=>LS.s('dc_draft',{step:S.step,area:S.area,sub:S.sub,shop:S.shop,addr:S.addr,sel:[...S.sel],muf:S.muf});
+const resetF=()=>{S.sel=new Map();S.shop=S.addr=S.muf='';S.step=0;S.dup=false;saveDraft()};
+let L=LS.g('dc_surveys',[]),R=[],DB=null,CAN=false,ME=null;
+const all=()=>{const m=new Map();[...R,...L].forEach(s=>m.set(s.id,s));return[...m.values()].sort((a,b)=>b.ts.localeCompare(a.ts))};
+const ld=t=>new Date(t).toLocaleDateString('en-CA');
+let tt;const msg=t=>{const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(tt);tt=setTimeout(()=>e.style.display='none',2800)};
+
+function renderHd(){
+ $('#hd').innerHTML=`<div class=bar><b>🍰 Dan Cake Retail Audit</b><small class=mut>${E(ME?.name||'…')}${CAN?' · Admin':''}</small><nav>${['survey','data','admin'].filter(t=>t==='survey'||CAN).map(t=>`<button data-tab=${t} class="${S.tab===t?'on':''}">${{survey:'Survey',data:'Data',admin:'Admin'}[t]}</button>`).join('')}</nav></div>`+(S.tab==='survey'&&!S.done?`<div class=prog>${[0,1,2,3,4].map(i=>`<i class="${i<=S.step?'on':''}"></i>`).join('')}</div><div class=st>Step ${S.step+1} of 5 · ${['Area','Shop','SKUs','Muffins','Review & submit'][S.step]}</div>`:'')}
+function render(){renderHd();S.tab==='survey'?renderSurvey():S.tab==='data'?renderData():renderAdmin()}
+
+const V=[()=>!S.area?'Select a Dhaka area':!S.sub?'Select a specific area':'',()=>!S.shop.trim()?'Enter the shop name':!S.addr.trim()?'Enter the shop address':'',()=>'',()=>S.muf?'':'Select the muffin selling format',()=>''];
+function renderSurvey(){
+ const m=$('#main'),n=$('#nav'),s=S.step;
+ if(S.done){n.innerHTML='';m.innerHTML=`<div class="card ok"><h2>✅ Survey successfully submitted.</h2><p class=mut>Survey ID</p><div class=id>${S.done.id}</div><p class=mut>${E(S.done.shop)} · ${E(S.done.sub)} · ${S.done.skus.length} SKUs recorded</p></div><button class="btn p w" id=again>Next shop (same area)</button><button class="btn w" id=fresh>New survey (choose area)</button>`;return}
+ const sel=[...S.sel.keys()].map(i=>M.find(x=>x.id===i)).filter(Boolean).map(x=>({...x,q:S.sel.get(x.id)})),li=a=>a.length?a.map(x=>`<li>${E(x.name)} ${E(x.flav)} · ${E(x.wt)} · ${price(x.mrp)} · <b>Qty ${x.q}</b>${D(x)?'':' <small>'+E(x.brand)+'</small>'}</li>`).join(''):'<li class=mut>None</li>';
+ const dan=sel.filter(D),cmp=sel.filter(x=>!D(x)),ed=g=>`<button class=ed data-go=${g}>Edit</button>`;
+ m.innerHTML=[
+ ()=>`<h2>Dhaka area</h2><div class=g2>${Object.keys(AREAS).map(k=>`<button class="chip ${S.area===k?'on':''}" data-a=${k}>${AREAS[k][0]}<small>${k}</small></button>`).join('')}</div>`+(S.area?`<h2>Specific area</h2><div class=g2>${AREAS[S.area][1].map(a=>`<button class="chip ${S.sub===a?'on':''}" data-s="${a}">${a}</button>`).join('')}</div>`:''),
+ ()=>`<div class=ctx>${AREAS[S.area][0]} → ${S.sub}</div><label>Shop name *<input id=shop value="${E(S.shop)}" autocomplete=off></label><label>Shop address *<textarea id=addr rows=3>${E(S.addr)}</textarea></label>`,
+ ()=>`<input id=q type=search placeholder="Search SKU, flavour, brand…" value="${E(S.q)}"><p class=mut>Tick every SKU you can see in this shop.</p><div id=skl></div>`,
+ ()=>`<h2>In this shop, Dan Cake muffin sold in a box or Open?</h2><div class=g2>${['Box','Open'].map(v=>`<button class="chip ${S.muf===v?'on':''}" data-m="${v}">${v}</button>`).join('')}</div>`,
+ ()=>`<div class=card>${ed(0)}<b>Area</b><p>${AN(S.area)} → ${S.sub}</p></div><div class=card>${ed(1)}<b>Shop</b><p>${E(S.shop)}<br>${E(S.addr)}</p></div><div class=card>${ed(2)}<b>Dan Cake SKUs (${dan.length})</b><ul>${li(dan)}</ul></div><div class=card>${ed(2)}<b>Competitor SKUs (${cmp.length})</b><ul>${li(cmp)}</ul></div><div class=card>${ed(3)}<b>Muffin selling format</b><p>${E(S.muf)}</p></div>`+(S.dup?'<div class="card warn">A survey for this shop was already submitted today. Tap “Submit anyway” only if this is a different visit.</div>':'')][s]();
+ n.innerHTML=(s===2?'<div class=tot id=tot></div>':'')+(s?'<button class=btn id=back>← Back</button>':'')+`<button class="btn p" id=next ${S.busy?'disabled':''}>${s===4?(S.dup?'SUBMIT ANYWAY':'SUBMIT SURVEY'):s===3?'Review →':'Next →'}</button>`;
+ if(s===2)renderList()}
+function renderList(){
+ const q=S.q.toLowerCase().trim(),g={};
+ act().forEach(x=>{if(q&&!`${x.brand} ${x.name} ${x.flav} ${x.wt} ${x.mfr}`.toLowerCase().includes(q))return;(g[x.brand]=g[x.brand]||[]).push(x)});
+ const o=Object.keys(g).sort((a,b)=>a==='Dan Cake'?-1:b==='Dan Cake'?1:0);
+ $('#skl').innerHTML=o.map(b=>`<details ${q||b==='Dan Cake'?'open':''}><summary>${E(b)}${b==='Dan Cake'?' (ours)':''}<span class=gc data-b="${E(b)}"></span></summary>${g[b].map(x=>`<div class="sku ${S.sel.has(x.id)?'on':''}"><label class=sk><input type=checkbox data-id=${x.id} ${S.sel.has(x.id)?'checked':''}><span>${E(x.name)}<small>${E(x.flav)}</small></span><em>${E(x.wt)}<br>${price(x.mrp)}</em></label><div class=qt><span>Quantity in shop</span><button class=qb data-q=-1 data-id=${x.id}>−</button><input class=qi type=number inputmode=numeric min=1 data-id=${x.id} value=${S.sel.get(x.id)||1}><button class=qb data-q=1 data-id=${x.id}>+</button></div></div>`).join('')}</details>`).join('')||'<p class=mut>No match.</p>';
+ counts()}
+function counts(){const c={};act().forEach(x=>{if(S.sel.has(x.id))c[x.brand]=(c[x.brand]||0)+1});$$('.gc').forEach(e=>e.textContent=c[e.dataset.b]?'✓ '+c[e.dataset.b]:'');const t=$('#tot');if(t)t.textContent=S.sel.size+' SKUs selected'}
+async function submit(){
+ if(S.busy)return;
+ const nk=s=>(s.ac+s.sub+s.shop).toLowerCase().replace(/\W+/g,'');
+ const rec={id:'',ts:new Date().toISOString(),rid:ME?.id||null,rname:ME?.name||'Unknown',ac:S.area,area:AREAS[S.area][0],sub:S.sub,shop:S.shop.trim(),addr:S.addr.trim(),muf:S.muf,skus:[...S.sel.keys()].map(i=>M.find(x=>x.id===i)).filter(Boolean).map(x=>({...snap(x),qty:S.sel.get(x.id)||1}))};
+ if(!S.dup&&all().some(s=>ld(s.ts)===ld(Date.now())&&nk(s)===nk(rec))){S.dup=true;render();scrollTo(0,99999);return}
+ S.busy=true;render();
+ rec.id='SRV-'+ld(Date.now()).replace(/-/g,'').slice(2)+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+ L.push(rec);LS.s('dc_surveys',L);
+ if(DB)try{await DB.doc('surveys/'+rec.id).set(rec);const y=LS.g('dc_syn',[]);y.push(rec.id);LS.s('dc_syn',y)}catch(e){msg('Saved on this device; will sync later')}
+ resetF();S.busy=false;S.done=rec;render();scrollTo(0,0)}
+
+/* ---------- DATA ---------- */
+let F={area:'',brand:'',muf:'',rs:'',from:'',to:'',shop:'',scope:'all',grp:'sku',asc:false};
+function renderData(){
+ $('#nav').innerHTML='';
+ const opt=(a)=>a.map(v=>`<option>${E(v)}</option>`).join('');
+ $('#main').innerHTML=`<div class=card><div class=fl><select data-f=area><option value="">All specific areas</option>${opt(SUBS.map(x=>x[1]))}</select><select data-f=brand><option value="">All brands</option>${opt([...new Set(M.map(x=>x.brand))])}</select><select data-f=muf><option value="">Muffin format: all</option><option>Box</option><option>Open</option></select><select data-f=rs><option value="">All researchers</option>${opt([...new Set(all().map(x=>x.rname).filter(Boolean))])}</select><input type=date data-f=from><input type=date data-f=to><input data-f=shop placeholder="Shop name contains…"></div>
+ <div class=fl><select data-f=scope><option value=all>Scope: all brands</option><option value=dan>Dan Cake only</option><option value=cmp>Competitors only</option></select><select data-f=grp><option value=sku>Group: SKU</option><option value=brand>Group: Brand</option><option value=mfr>Group: Manufacturer</option><option value=flav>Group: Flavour</option><option value=wt>Group: Weight</option><option value=cat>Group: Category</option></select><button class=btn data-x=sort>Sort: most available</button></div>
+ <div class=fl><button class="btn p" data-x=xlsx>⬇ Excel (.xlsx)</button><button class=btn data-x=csvs>⬇ CSV: surveys</button><button class=btn data-x=csvk>⬇ CSV: SKU availability</button></div></div><div id=res></div>`;
+ $$('[data-f]').forEach(e=>e.value=F[e.dataset.f]);renderRes()}
+function renderRes(){
+ const A=all().filter(s=>(!F.area||s.sub===F.area)&&(!F.muf||s.muf===F.muf)&&(!F.rs||s.rname===F.rs)&&(!F.from||ld(s.ts)>=F.from)&&(!F.to||ld(s.ts)<=F.to)&&(!F.shop||s.shop.toLowerCase().includes(F.shop.toLowerCase())));
+ const N=A.length,has=(s,f)=>s.skus.some(f),pc=(a,b)=>b?Math.round(a*1000/b)/10+'%':'–',dn=A.filter(s=>has(s,D)).length,cn=A.filter(s=>has(s,x=>!D(x))).length;
+ const kf={brand:x=>x.brand,mfr:x=>x.mfr,sku:x=>`${x.brand} · ${x.name} · ${x.flav} · ${x.wt}`,flav:x=>x.flav||'—',wt:x=>x.wt||'—',cat:x=>x.cat},f=kf[F.grp];
+ const ok=x=>(F.scope==='all'||(F.scope==='dan')===D(x))&&(!F.brand||x.brand===F.brand),cnt=new Map();
+ act().filter(ok).forEach(x=>cnt.set(f(x),0));A.forEach(s=>new Set(s.skus.filter(ok).map(f)).forEach(k=>cnt.set(k,(cnt.get(k)||0)+1)));
+ const un=new Map();A.forEach(s=>s.skus.filter(ok).forEach(x=>un.set(f(x),(un.get(f(x))||0)+(x.qty||1))));
+ const rows=[...cnt].sort((a,b)=>F.asc?a[1]-b[1]:b[1]-a[1]).slice(0,80);
+ const ar=SUBS.map(([k,s])=>{const a=A.filter(x=>x.sub===s);return`<tr><td>${s} <small style="display:inline">${k}</small></td><td>${a.length}</td><td>${pc(a.filter(x=>has(x,D)).length,a.length)}</td><td>${pc(a.filter(x=>has(x,y=>!D(y))).length,a.length)}</td></tr>`}).join('');
+ const mb=A.filter(s=>s.muf==='Box').length;
+ $('#res').innerHTML=`<div class=kp><div>Shops surveyed<b>${N}</b></div><div>With Dan Cake<b>${dn}</b>${pc(dn,N)}</div><div>With competitors<b>${cn}</b>${pc(cn,N)}</div><div>Muffins: Box / Open<b>${mb} / ${N-mb}</b></div><div>Researchers<b>${new Set(A.map(s=>s.rname)).size}</b></div></div>
+ <div class=card style="margin-top:12px"><h3>Presence by area (% of shops surveyed)</h3><table><tr><th>Area</th><th>Shops</th><th>Dan Cake</th><th>Competitor</th></tr>${ar}</table></div>
+ <div class=card><h3>SKU presence — ${rows.length} rows</h3>${rows.map(([l,c])=>`<div class=r><span>${E(l)}</span><span>${c}/${N}${un.get(l)?' · '+un.get(l)+' pcs':''}</span><b>${pc(c,N)}</b><i style="width:${N?c*100/N:0}%"></i></div>`).join('')||'<p class=mut>No data.</p>'}<p class=mut>'pcs' = total quantity recorded by researchers. Presence % = shops where available ÷ shops surveyed. It is numeric distribution in the sampled shops, not market share.</p></div>`}
+const csv=a=>'\ufeff'+[Object.keys(a[0]),...a.map(r=>Object.values(r))].map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+function tables(){const A=all(),tm=s=>new Date(s.ts).toLocaleTimeString('en-GB');
+ return{sv:A.map(s=>({'Survey ID':s.id,'Researcher':s.rname||'','Date':ld(s.ts),'Time':tm(s),'Dhaka Area':s.area,'Area Code':s.ac,'Specific Area':s.sub,'Shop Name':s.shop,'Shop Address':s.addr,'Muffin Selling Format':s.muf,'SKUs Selected':s.skus.length,'Total Quantity':s.skus.reduce((a,x)=>a+(x.qty||1),0)})),
+ sk:A.flatMap(s=>s.skus.map(x=>({'Survey ID':s.id,'Researcher':s.rname||'','Date':ld(s.ts),'Time':tm(s),'Dhaka Area':s.area,'Specific Area':s.sub,'Shop Name':s.shop,'Shop Address':s.addr,'Manufacturer':x.mfr,'Brand':x.brand,'SKU Name':x.name,'Flavour':x.flav,'Net Weight':x.wt,'MRP (Tk)':x.mrp??'','Quantity':x.qty??1,'Category':x.cat})))}}
+async function save(name,data){
+ try{const d=await window.claude.use('downloads');if(d){await d.save({filename:name,data});return}}catch(e){if(e&&e.code==='declined')return}
+ const a=document.createElement('a');a.href=URL.createObjectURL(data instanceof Blob?data:new Blob([data]));a.download=name;a.click()}
+async function exp(k){
+ const t=tables(),day=ld(Date.now());if(!t.sv.length)return msg('No surveys to export yet');
+ if(k==='csvs')return save(`Surveys_${day}.csv`,new Blob([csv(t.sv)],{type:'text/csv'}));
+ if(k==='csvk')return save(`SKU_Availability_${day}.csv`,new Blob([csv(t.sk.length?t.sk:[{'Survey ID':''}])],{type:'text/csv'}));
+ if(!window.XLSX)return msg('Excel library unavailable — use CSV');
+ const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(t.sv),'Surveys');XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(t.sk),'SKU_Availability');
+ save(`Dan_Cake_Retail_Audit_${day}.xlsx`,new Blob([XLSX.write(wb,{bookType:'xlsx',type:'array'})],{type:'application/octet-stream'}))}
+
+/* ---------- ADMIN ---------- */
+function saveM(){LS.s('dc_master',M);if(DB)DB.doc('master/skus').set({list:M}).catch(()=>msg('Saved on this device only'))}
+function renderAdmin(){
+ $('#nav').innerHTML='';const dl=(id,a)=>`<datalist id=${id}>${[...new Set(a)].map(v=>`<option value="${E(v)}">`).join('')}</datalist>`;
+ $('#main').innerHTML=`<div class=card><h3>Upload SKU master (.xlsx / .csv)</h3><p class=mut>Columns: Manufacturer, SKU Name, Flavour, Net Weight, MRP.</p><input type=file id=up accept=".xlsx,.xls,.csv">${S.pend?`<p>${S.pend.length} SKUs read. <button class="btn p" data-x=apply>Replace master list</button> <button class=btn data-x=cancel>Cancel</button></p>`:''}</div>
+ <div class=card><h3>Add SKU / new competitor / category</h3><div class=fl><input id=n_brand list=dl_b placeholder="Brand (new name = new competitor)"><input id=n_mfr placeholder="Manufacturer (optional)"><input id=n_name placeholder="SKU name"><input id=n_flav placeholder=Flavour><input id=n_wt placeholder="Net weight, e.g. 140 gm"><input id=n_mrp type=number placeholder="MRP (Tk)"><input id=n_cat list=dl_c placeholder="Category"></div><button class="btn p" data-x=add>Add SKU</button></div>${dl('dl_b',M.map(x=>x.brand))}${dl('dl_c',M.map(x=>x.cat))}
+ <input id=aq placeholder="Search master list (${M.length} SKUs)" value="${E(S.aq)}"><div id=al class=card style="margin-top:10px"></div>`;renderAL()}
+function renderAL(){const q=S.aq.toLowerCase();$('#al').innerHTML=M.filter(x=>!q||`${x.brand} ${x.name} ${x.flav}`.toLowerCase().includes(q)).map(x=>`<div class="ar ${x.off?'off':''}"><div><b>${E(x.name)}</b> <small>${E(x.brand)} · ${E(x.flav)} · ${E(x.cat)}</small></div><input data-e=wt data-id=${x.id} value="${E(x.wt)}" placeholder=weight><input data-e=mrp data-id=${x.id} type=number value="${x.mrp??''}" placeholder=MRP><button class=btn data-off=${x.id}>${x.off?'Restore':'Discontinue'}</button></div>`).join('')}
+async function parseUp(f){
+ if(!window.XLSX)return msg('Excel library unavailable');
+ const wb=XLSX.read(await f.arrayBuffer()),rs=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''});let mf='';
+ S.pend=rs.filter(r=>r['SKU Name']).map((r,i)=>{mf=r.Manufacturer||mf;const p=String(r.MRP).match(/\d+/);return{id:'U'+Date.now().toString(36)+i,mfr:mf,brand:brandOf(mf,r['SKU Name']),name:String(r['SKU Name']),flav:String(r.Flavour),wt:String(r['Net Weight']).replace(/(\d)gm/,'$1 gm'),mrp:p?+p[0]:null,cat:catOf(String(r['SKU Name']))}});render()}
+
+/* ---------- EVENTS ---------- */
+const go=n=>{S.step=n;S.dup=false;saveDraft();render();scrollTo(0,0)};
+document.addEventListener('click',e=>{
+ const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+ if(d.tab){S.tab=d.tab;render();scrollTo(0,0)}
+ else if(d.a){S.area=d.a;if(!AREAS[d.a][1].includes(S.sub))S.sub='';saveDraft();render()}
+ else if(d.s){S.sub=d.s;saveDraft();render()}
+ else if(d.m){S.muf=d.m;saveDraft();render()}
+ else if(d.q){const v=Math.max(1,(S.sel.get(d.id)||1)+ +d.q);S.sel.set(d.id,v);t.parentElement.querySelector('.qi').value=v;saveDraft()}
+ else if(d.go!==undefined)go(+d.go);
+ else if(t.id==='back')go(S.step-1);
+ else if(t.id==='next'){const er=V[S.step]();if(er)return msg(er);S.step===4?submit():go(S.step+1)}
+ else if(t.id==='again'){const a=S.area,s=S.sub;S.done=null;resetF();S.area=a;S.sub=s;go(1)}
+ else if(t.id==='fresh'){S.done=null;S.area=S.sub='';resetF();render()}
+ else if(d.x==='xlsx'||d.x==='csvs'||d.x==='csvk')exp(d.x);
+ else if(d.x==='sort'){F.asc=!F.asc;t.textContent=F.asc?'Sort: least available':'Sort: most available';renderRes()}
+ else if(d.x==='cancel'){S.pend=null;render()}
+ else if(d.x==='apply'){M=S.pend;S.pend=null;saveM();render();msg('Master list replaced')}
+ else if(d.x==='add'){const g=i=>$('#'+i).value.trim(),b=g('n_brand'),n=g('n_name');if(!b||!n)return msg('Brand and SKU name are required');
+  M.push({id:'N'+Date.now().toString(36),mfr:g('n_mfr')||b,brand:b,name:n,flav:g('n_flav'),wt:g('n_wt'),mrp:g('n_mrp')?+g('n_mrp'):null,cat:g('n_cat')||catOf(n)});saveM();render();msg('SKU added')}
+ else if(d.off){const x=M.find(y=>y.id===d.off);x.off=!x.off;saveM();renderAL()}});
+const onIn=e=>{const t=e.target,d=t.dataset;
+ if(t.id==='shop'){S.shop=t.value;saveDraft()}else if(t.id==='addr'){S.addr=t.value;saveDraft()}
+ else if(t.id==='q'){S.q=t.value;renderList()}else if(t.id==='aq'){S.aq=t.value;renderAL()}
+ else if(t.id==='up'&&t.files[0])parseUp(t.files[0]);
+ else if(t.classList.contains('qi')){const v=Math.max(1,parseInt(t.value)||1);S.sel.set(d.id,v);if(e.type==='change')t.value=v;saveDraft()}
+ else if(t.type==='checkbox'&&d.id){const r=t.closest('.sku');t.checked?S.sel.set(d.id,S.sel.get(d.id)||1):(S.sel.delete(d.id),r.querySelector('.qi').value=1);r.classList.toggle('on',t.checked);counts();saveDraft()}
+ else if(d.f){F[d.f]=t.value;renderRes()}
+ else if(d.e&&e.type==='change'){const x=M.find(y=>y.id===d.id);x[d.e]=d.e==='mrp'?(t.value===''?null:+t.value):t.value;saveM();msg('Saved')}};
+document.addEventListener('input',onIn);document.addEventListener('change',onIn);
+
+render();
+(async()=>{
+ try{const u=await window.claude.use('user');if(u){CAN=!!(await u.canEdit());const me=await u.me();ME={id:me.id,name:me.name||'Researcher'}}}catch(e){}
+ try{DB=await window.claude.use('db')}catch(e){}
+ renderHd();
+ if(!DB)return;
+ try{DB.collection('surveys').onSnapshot(q=>{R=q.docs.map(d=>d.data());if(S.tab==='data')renderRes()},()=>{})}catch(e){}
+ try{DB.doc('master/skus').onSnapshot(d=>{if(d.exists&&Array.isArray(d.data().list)){M=d.data().list;LS.s('dc_master',M);if(S.tab==='survey'&&S.step===2&&!S.done)renderList();else if(S.tab==='admin'&&!/INPUT/.test(document.activeElement.tagName))renderAdmin()}},()=>{})}catch(e){}
+ const y=LS.g('dc_syn',[]);for(const s of L)if(!y.includes(s.id))try{await DB.doc('surveys/'+s.id).set(s);y.push(s.id)}catch(e){}LS.s('dc_syn',y);
+})();
+</script></body></html>
